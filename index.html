@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução da Robótica - Do Passado ao Futuro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0a0f1d',
+                            card: '#111827',
+                            cyan: '#06b6d4',
+                            neon: '#22d3ee',
+                            accent: '#3b82f6',
+                            glow: 'rgba(6, 182, 212, 0.25)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060a12;
+            color: #f3f4f6;
+        }
+
+        /* Efeito Neon Glow */
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.35);
+        }
+        
+        .neon-border {
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 12px rgba(34, 211, 238, 0.6);
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Animações CSS */
+        @keyframes pulseSlow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
+        }
+        .pulse-bg {
+            animation: pulseSlow 8s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-grid antialiased selection:bg-brand-cyan selection:text-black min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- NAV BAR -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#060a12]/80 backdrop-blur-md border-b border-gray-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-blue-600 flex items-center justify-center text-black font-bold text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid font-black fa-robot"></i>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-white via-gray-200 to-brand-cyan bg-clip-text text-transparent">
+                        ROBOTIX
+                    </span>
+                </a>
+
+                <!-- Nav Links Desktop -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#hero" class="text-gray-300 hover:text-brand-cyan transition-colors">Início</a>
+                    <a href="#linha-do-tempo" class="text-gray-300 hover:text-brand-cyan transition-colors">Linha do Tempo</a>
+                    <a href="#aplicacoes" class="text-gray-300 hover:text-brand-cyan transition-colors">Aplicações</a>
+                    <a href="#futuro" class="text-gray-300 hover:text-brand-cyan transition-colors">O Futuro</a>
+                    <a href="#interativo" class="text-gray-300 hover:text-brand-cyan transition-colors">Quiz & Curiosidades</a>
+                </nav>
+
+                <!-- Button Mobile Menu -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0a0f1d] border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="mobile-link block text-gray-300 hover:text-brand-cyan py-2">Início</a>
+            <a href="#linha-do-tempo" class="mobile-link block text-gray-300 hover:text-brand-cyan py-2">Linha do Tempo</a>
+            <a href="#aplicacoes" class="mobile-link block text-gray-300 hover:text-brand-cyan py-2">Aplicações</a>
+            <a href="#futuro" class="mobile-link block text-gray-300 hover:text-brand-cyan py-2">O Futuro</a>
+            <a href="#interativo" class="mobile-link block text-gray-300 hover:text-brand-cyan py-2">Quiz & Curiosidades</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden flex items-center min-h-screen">
+        <!-- Luzes e gradientes de fundo -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-cyan/20 rounded-full blur-[120px] pointer-events-none pulse-bg"></div>
+        <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-blue-600/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 mb-6">
+                <i class="fa-solid fa-microchip"></i> Jornada Através da Tecnologia
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto">
+                A Incrível <span class="bg-gradient-to-r from-brand-cyan via-blue-400 to-indigo-500 bg-clip-text text-transparent neon-text-glow">Evolução da Robótica</span>
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                Dos lendários autômatos da antiguidade aos humanoides com inteligência artificial. Descubra como a engenharia moldou o presente e está construindo o amanhã.
+            </p>
+
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#linha-do-tempo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-cyan to-blue-600 text-black font-bold text-base hover:shadow-lg hover:shadow-cyan-500/30 hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    Explorar Linha do Tempo <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#interativo" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gray-900/80 border border-gray-700 hover:border-brand-cyan text-gray-200 font-semibold text-base hover:bg-gray-800 transition-all flex items-center justify-center gap-2">
+                    Testar Conhecimentos <i class="fa-solid fa-gamepad"></i>
+                </a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="mt-16 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-gray-900/50 border border-gray-800/80 backdrop-blur-md">
+                <div class="p-2">
+                    <p class="text-3xl font-extrabold text-brand-cyan">2.500+</p>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Anos de História</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-3xl font-extrabold text-brand-cyan">1954</p>
+                    <p class="text-xs text-gray-400 uppercase mt-1">1º Robô Industrial</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-3xl font-extrabold text-brand-cyan">3M+</p>
+                    <p class="text-xs text-gray-400 uppercase mt-1">Robôs em Fábricas</p>
+                </div>
+                <div class="p-2">
+                    <p class="text-3xl font-extrabold text-brand-cyan">IA Generativa</p>
+                    <p class="text-xs text-gray-400 uppercase mt-1">A Nova Fronteira</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINHA DO TEMPO INTERATIVA -->
+    <section id="linha-do-tempo" class="py-20 relative bg-[#080d1a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Linha do Tempo da Robótica</h2>
+                <div class="w-20 h-1 bg-brand-cyan mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-400">Clique nos marcos históricos para ver os detalhes da evolução tecnológica.</p>
+            </div>
+
+            <!-- Timeline Navigation Tabs -->
+            <div class="flex overflow-x-auto pb-4 mb-8 no-scrollbar justify-start md:justify-center gap-2 sm:gap-4">
+                <button onclick="selectTimeline(0)" class="timeline-tab active border border-brand-cyan bg-brand-cyan/20 text-brand-cyan px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-monument"></i> Antiguidade
+                </button>
+                <button onclick="selectTimeline(1)" class="timeline-tab border border-gray-800 bg-gray-900/60 text-gray-400 hover:text-white px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-industry"></i> 1950-60: Unimate
+                </button>
+                <button onclick="selectTimeline(2)" class="timeline-tab border border-gray-800 bg-gray-900/60 text-gray-400 hover:text-white px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-shuttle-space"></i> Exploração Espacial
+                </button>
+                <button onclick="selectTimeline(3)" class="timeline-tab border border-gray-800 bg-gray-900/60 text-gray-400 hover:text-white px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-person-walking"></i> Humanoides
+                </button>
+                <button onclick="selectTimeline(4)" class="timeline-tab border border-gray-800 bg-gray-900/60 text-gray-400 hover:text-white px-5 py-3 rounded-xl font-medium text-sm whitespace-nowrap transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-brain"></i> Era da IA & Soft Robotics
+                </button>
+            </div>
+
+            <!-- Timeline Card Container -->
+            <div id="timeline-card-display" class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 md:p-10 backdrop-blur-md transition-all duration-300">
+                <!-- Preenchido via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PRINCIPAIS ÁREAS E APLICAÇÕES -->
+    <section id="aplicacoes" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Campos de Aplicação</h2>
+                <div class="w-20 h-1 bg-brand-cyan mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-400">Como os robôs transformam os principais setores da sociedade moderna.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1: Medicina -->
+                <div class="bg-gray-900/60 border border-gray-800 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-brand-cyan flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-cyan group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-user-nurse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Medicina & Cirurgia</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Sistemas como o robô **da Vinci** realizam procedimentos cirúrgicos complexos de alta precisão com micro-incisões, reduzindo drasticamente o tempo de recuperação dos pacientes.
+                    </p>
+                    <span class="text-xs text-brand-cyan font-semibold uppercase tracking-wider">Alta Precisão • Microcirurgia</span>
+                </div>
+
+                <!-- Card 2: Indústria -->
+                <div class="bg-gray-900/60 border border-gray-800 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-blue-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Indústria & Manufatura</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Braços mecânicos, robôs de soldagem e **Cobots** (robôs colaborativos) trabalham ao lado de humanos montando veículos, eletrônicos e embalando produtos em ritmo constante.
+                    </p>
+                    <span class="text-xs text-blue-400 font-semibold uppercase tracking-wider">Automação • Cobots</span>
+                </div>
+
+                <!-- Card 3: Automação Residencial -->
+                <div class="bg-gray-900/60 border border-gray-800 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-indigo-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-house-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Automação Residencial</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Aspiradores inteligentes (como Roombas), cortadores de grama autônomos e assistentes domésticos tornaram a robótica uma presença diária dentro das casas.
+                    </p>
+                    <span class="text-xs text-indigo-400 font-semibold uppercase tracking-wider">Casas Inteligentes • Praticidade</span>
+                </div>
+
+                <!-- Card 4: Exploração e Defesa -->
+                <div class="bg-gray-900/60 border border-gray-800 hover:border-brand-cyan/50 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:bg-emerald-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Exploração & Defesa</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Drones não-tripulados, submundo marinho com ROVs e robôs para desarmamento de artefatos explosivos assumem tarefas em cenários perigosos demais para os seres humanos.
+                    </p>
+                    <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">Ambientes Extremos • Segurança</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO O FUTURO DA ROBÓTICA E IA -->
+    <section id="futuro" class="py-20 relative bg-[#080d1a] border-y border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-brand-cyan font-bold text-sm tracking-widest uppercase">Próxima Fronteira</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 leading-tight">
+                        A Fusão entre <br><span class="text-brand-cyan">Robótica e Inteligência Artificial</span>
+                    </h2>
+                    <p class="mt-6 text-gray-300 leading-relaxed">
+                        A robótica tradicional dependia de códigos pré-programados para realizar tarefas repetitivas. Hoje, com a integração de **Modelos de Linguagem Visual e IA Generativa**, os robôs conseguem entender o mundo ao seu redor em tempo real, aprender por observação e se adaptar a cenários imprevisíveis.
+                    </p>
+                    
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-900/70 border border-gray-800">
+                            <div class="p-3 bg-brand-cyan/10 rounded-lg text-brand-cyan">
+                                <i class="fa-solid fa-feather-pointed text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Robótica Soft (Macia)</h4>
+                                <p class="text-gray-400 text-sm">Inspirada na biologia (polvos e tecidos musculares), usa materiais flexíveis para interagir com humanos com segurança máxima.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-xl bg-gray-900/70 border border-gray-800">
+                            <div class="p-3 bg-blue-500/10 rounded-lg text-blue-400">
+                                <i class="fa-solid fa-brain text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Autonomia Cognitiva</h4>
+                                <p class="text-gray-400 text-sm">Robôs que tomam decisões complexas, resolvem problemas e aprendem novas tarefas sozinhos em vez de apenas seguir comandos rígidos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Painel Gráfico do Futuro -->
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan to-blue-600 rounded-2xl blur-lg opacity-30"></div>
+                    <div class="relative bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-800">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center justify-between">
+                            <span>Tendências Globais</span>
+                            <i class="fa-solid fa-chart-line text-brand-cyan"></i>
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span class="text-gray-300">Adoção de Robôs Humanoides em Fábricas</span>
+                                    <span class="text-brand-cyan font-bold">Crescimento de +350%</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-brand-cyan w-[85%] rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span class="text-gray-300">Integração de IA Generativa na Robótica</span>
+                                    <span class="text-brand-cyan font-bold">Padrão da Indústria</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500 w-[92%] rounded-full"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-sm mb-2">
+                                    <span class="text-gray-300">Micro-robôs para Medicina Interna</span>
+                                    <span class="text-brand-cyan font-bold">Em Testes Clínicos</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-500 w-[65%] rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-brand-cyan/10 border border-brand-cyan/20 rounded-xl text-center">
+                            <p class="text-xs text-brand-cyan font-mono">"O melhor jeito de prever o futuro da tecnologia é inventando-o."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ E CURIOSIDADES INTERATIVAS -->
+    <section id="interativo" class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Desafio de Robótica</h2>
+                <div class="w-20 h-1 bg-brand-cyan mx-auto mt-4 rounded-full"></div>
+                <p class="mt-4 text-gray-400">Testes seus conhecimentos sobre a história e os fatos da robótica.</p>
+            </div>
+
+            <!-- Quiz Card -->
+            <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-md">
+                <div id="quiz-container">
+                    <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
+                        <span id="quiz-step" class="text-xs font-semibold text-brand-cyan uppercase tracking-wider">Pergunta 1 de 3</span>
+                        <span id="quiz-score" class="text-xs font-bold text-gray-400">Pontuação: 0</span>
+                    </div>
+
+                    <h3 id="quiz-question" class="text-xl sm:text-2xl font-bold text-white mb-6">
+                        <!-- Pergunta aqui -->
+                    </h3>
+
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- Opções aqui -->
+                    </div>
+
+                    <div id="quiz-feedback" class="mt-6 p-4 rounded-xl hidden text-sm font-medium"></div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-brand-cyan text-black font-bold rounded-xl hover:bg-cyan-400 transition-all">
+                            Próxima Pergunta <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fatos Curiosos Accordion -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-white mb-6 text-center">Fatos Curiosos</h3>
+                <div class="space-y-4">
+                    <details class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 group cursor-pointer">
+                        <summary class="font-semibold text-gray-200 flex justify-between items-center list-none">
+                            <span>De onde vem a palavra "Robô"?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-cyan group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                            A palavra vem do termo tcheco **"robota"**, que significa "trabalho forçado" ou "servidão". Foi criada pelo escritor Karel Čapek em sua peça teatral *R.U.R. (Rossum's Universal Robots)* em 1920.
+                        </p>
+                    </details>
+
+                    <details class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 group cursor-pointer">
+                        <summary class="font-semibold text-gray-200 flex justify-between items-center list-none">
+                            <span>Quem criou as 3 Leis da Robótica?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-cyan group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                            O famoso escritor de ficção científica **Isaac Asimov** introduziu as três leis no seu conto "Runaround" em 1942. A regra nº 1 diz que um robô não pode ferir um ser humano ou permitir que ele sofra algum mal.
+                        </p>
+                    </details>
+
+                    <details class="bg-gray-900/60 border border-gray-800 rounded-xl p-4 group cursor-pointer">
+                        <summary class="font-semibold text-gray-200 flex justify-between items-center list-none">
+                            <span>Qual o lugar com maior densidade de robôs no mundo?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-cyan group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <p class="text-gray-400 text-sm mt-3 leading-relaxed">
+                            A **Coreia do Sul** lidera a densidade mundial de robôs industriais, possuindo mais de 1.000 robôs para cada 10.000 funcionários humanos no setor industrial.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#04070d] border-t border-gray-800/80 py-10 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                <a href="#" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg bg-brand-cyan text-black font-bold flex items-center justify-center">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <span class="text-white font-bold tracking-wider">ROBOTIX</span>
+                </a>
+                <p class="text-xs text-gray-400">© 2026 Portal Educacional sobre a Evolução da Robótica. Criado com HTML, CSS e JS.</p>
+                <div class="flex space-x-4 text-gray-400 text-lg">
+                    <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Dados da Linha do Tempo
+        const timelineData = [
+            {
+                title: "Autômatos na Antiguidade e Idade Média",
+                year: "Século IV a.C. - Século XVI",
+                tag: "As Origens",
+                description: "Desde a Grécia Antiga com Archytas de Tarento e seu 'Pombo de Madeira' mecânico movido a vapor, até os engenhosos autômatos de Al-Jazari na Idade de Ouro Islâmica e os esboços de cavaleiro mecânico de Leonardo da Vinci em 1495. A humanidade sempre sonhou com máquinas autônomas.",
+                highlights: ["Pombo a Vapor de Archytas", "Autômatos Hidráulicos de Al-Jazari", "O Cavaleiro de Leonardo da Vinci"]
+            },
+            {
+                title: "A Revolução do Unimate",
+                year: "1950 - 1960",
+                tag: "Início da Robótica Industrial",
+                description: "Em 1954, George Devol patenteou o Unimate, o primeiro robô industrial programável. Em 1961, ele começou a operar na linha de montagem da General Motors, realizando tarefas perigosas de soldagem e moldagem de peças de metal quente.",
+                highlights: ["Criado por George Devol e Joseph Engelberger", "Início do conceito de linha de produção automatizada", "Engenharia eletromecânica de alta resistência"]
+            },
+            {
+                title: "Exploração Espacial e Extraterrestre",
+                year: "1970 - 1990",
+                tag: "Conquista do Espaço",
+                description: "Robôs foram enviados para onde os humanos não podiam ir de imediato. Desde as sondas soviéticas Lunokhod na Lua até os renomados Mars Rovers da NASA (como o Sojourner em 1997 e depois Spirit, Opportunity, Curiosity e Perseverance), mudando para sempre a astrobiologia.",
+                highlights: ["Primeiros Rovers em corpos celestes", "Sistemas de navegação autônoma em terreno acidentado", "Coleta de amostras e exames químicos remotos"]
+            },
+            {
+                title: "Era Humanoide: ASIMO, Atlas & Tesla Bot",
+                year: "2000 - Presente",
+                tag: "Forma Humana & Bipedalismo",
+                description: "O robô ASIMO da Honda revolucionou o equilíbrio bípede nos anos 2000. Anos depois, a Boston Dynamics chocou o mundo com as acrobacias incríveis do Atlas. Recentemente, projetos como o Tesla Optimus visam a produção em massa de robôs humanoides multifuncionais.",
+                highlights: ["Honda ASIMO (2000)", "Boston Dynamics Atlas (Parcour & Agilidade)", "Tesla Optimus e Figura AI (Produção em Massa)"]
+            },
+            {
+                title: "Era da Inteligência Artificial & Robótica Soft",
+                year: "Presente - Futuro",
+                tag: "Nova Era de Autonomia",
+                description: "Com o avanço dos grandes modelos de linguagem (LLMs) e da 'Robótica Soft' (materiais flexíveis e seguros), os robôs não apenas se movimentam, mas compreendem linguagem natural, interagem de forma gentil com tecidos humanos e se adaptam instantaneamente a ambientes imprevisíveis.",
+                highlights: ["Redes Neurais Multimodais", "Materiais Flexíveis (Robótica Bio-inspirada)", "Integração total com a nuvem e aprendizado por reforço"]
+            }
+        ];
+
+        // Função para Renderizar a Linha do Tempo
+        function selectTimeline(index) {
+            const tabs = document.querySelectorAll('.timeline-tab');
+            tabs.forEach((tab, i) => {
+                if(i === index) {
+                    tab.classList.add('border-brand-cyan', 'bg-brand-cyan/20', 'text-brand-cyan');
+                    tab.classList.remove('border-gray-800', 'bg-gray-900/60', 'text-gray-400');
+                } else {
+                    tab.classList.remove('border-brand-cyan', 'bg-brand-cyan/20', 'text-brand-cyan');
+                    tab.classList.add('border-gray-800', 'bg-gray-900/60', 'text-gray-400');
+                }
+            });
+
+            const data = timelineData[index];
+            const container = document.getElementById('timeline-card-display');
+            
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-gray-800 pb-4">
+                    <div>
+                        <span class="text-xs font-bold text-brand-cyan uppercase tracking-wider bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/20">${data.tag}</span>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mt-2">${data.title}</h3>
+                    </div>
+                    <span class="text-xl font-extrabold text-blue-400 font-mono">${data.year}</span>
+                </div>
+                <p class="text-gray-300 leading-relaxed text-base sm:text-lg mb-6">${data.description}</p>
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Marcos Principais:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.highlights.map(item => `<span class="bg-gray-800 text-gray-200 text-xs px-3 py-1.5 rounded-lg border border-gray-700/80"><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i>${item}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Dados do Quiz
+        const quizData = [
+            {
+                question: "Qual foi considerado o primeiro robô industrial programável da história?",
+                options: ["ASIMO", "Unimate", "Curiosity", "Atlas"],
+                correct: 1
+            },
+            {
+                question: "Quem introduziu as famosas 'Três Leis da Robótica' na ficção científica?",
+                options: ["Alan Turing", "Karel Čapek", "Isaac Asimov", "Elon Musk"],
+                correct: 2
+            },
+            {
+                question: "O termo 'Robótica Soft' (Macia) foca no uso de qual tipo de tecnologia?",
+                options: ["Blindagens de Titânio", "Materiais flexíveis e bio-inspirados", "Supercomputadores quânticos", "Rodas de alta velocidade"],
+                correct: 1
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQuestion];
+            document.getElementById('quiz-step').innerText = `Pergunta ${currentQuestion + 1} de ${quizData.length}`;
+            document.getElementById('quiz-question').innerText = q.question;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700/60 text-gray-200 font-medium transition-all flex justify-between items-center";
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIdx, btnElement) {
+            const q = quizData[currentQuestion];
+            const options = document.getElementById('quiz-options').children;
+
+            // Desativa todos os botões
+            for (let b of options) {
+                b.disabled = true;
+                b.classList.add('cursor-not-allowed', 'opacity-60');
+            }
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedIdx === q.correct) {
+                score++;
+                btnElement.classList.remove('bg-gray-800/80', 'opacity-60');
+                btnElement.classList.add('bg-emerald-600/30', 'border-emerald-500', 'text-emerald-300');
+                feedback.className = "mt-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-sm font-medium";
+                feedback.innerText = "✨ Resposta Correta! Excelente conhecimento.";
+            } else {
+                btnElement.classList.remove('bg-gray-800/80', 'opacity-60');
+                btnElement.classList.add('bg-rose-600/30', 'border-rose-500', 'text-rose-300');
+                options[q.correct].classList.remove('opacity-60');
+                options[q.correct].classList.add('bg-emerald-600/30', 'border-emerald-500', 'text-emerald-300');
+                feedback.className = "mt-6 p-4 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-sm font-medium";
+                feedback.innerText = "❌ Resposta Incorreta. A alternativa certa era: " + q.options[q.correct];
+            }
+
+            document.getElementById('quiz-score').innerText = `Pontuação: ${score}`;
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showQuizResults();
+            }
+        }
+
+        function showQuizResults() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="w-20 h-20 bg-brand-cyan/20 border border-brand-cyan/40 text-brand-cyan rounded-full flex items-center justify-center text-4xl mx-auto mb-6">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-white mb-2">Quiz Concluído!</h3>
+                    <p class="text-gray-400 mb-6">Você acertou <span class="text-brand-cyan font-bold text-xl">${score}</span> de <span class="text-white font-bold">${quizData.length}</span> perguntas.</p>
+                    <button onclick="restartQuiz()" class="px-8 py-3 bg-gradient-to-r from-brand-cyan to-blue-600 text-black font-bold rounded-xl hover:scale-105 transition-all">
+                        Refazer Quiz <i class="fa-solid fa-rotate-right ml-2"></i>
+                    </button>
+                </div>
+            `;
+        }
+function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            location.reload();
+        }
+
+        // Inicialização dos Scripts ao carregar a página
+        window.onload = function() {
+            selectTimeline(0);
+            loadQuestion();
+
+            // Script para o Menu Mobile
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        };
+    </script>
+</body>
+</html>
